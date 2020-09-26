@@ -4,11 +4,11 @@
 
 int main(int argc, char **argv)
 {
-    ftp_client_t *ftp = ftp_client_connect("localhost", 1337, "wilfreed", "jean");
+    ftp_client_t *ftp = ftp_client_connect("127.0.0.1", 21, "wilfreed", "jean");
     printf("fd -> %d\n", ftp->fd);
-    printf("fd -> %s\n", ftp->host);
-    printf("fd -> %s\n", ftp->user);
-    printf("fd -> %s\n", ftp->password);
-    printf("fd -> %d\n", ftp->port);
+    printf("host -> %s\n", ftp->host);
+    printf("user -> %s\n", ftp->user);
+    printf("pass -> %s\n", ftp->password);
+    printf("port -> %d\n", ftp->port);
 
 }
