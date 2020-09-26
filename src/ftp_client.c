@@ -4,6 +4,12 @@
 #include <string.h>
 #include "../include/ftp_client.h"
 #define BUFFER_SIZE 1000
+
+/*
+    /////////////////////////
+    |    SOCKET SECTION    |
+    ////////////////////////
+*/
 void socket_init(ftp_client_t *init)
 {
     WSADATA wsa;
@@ -39,6 +45,12 @@ void socket_connect(ftp_client_t *client)
 
 
 }
+
+/*
+    /////////////////////////
+    |      FTP SECTION     |
+    ////////////////////////
+*/
 
 void ftp_login(ftp_client_t *client)
 {
@@ -115,3 +127,17 @@ void ftp_mkdir(ftp_client_t *fd, char *folders)
     printf("%s\n", buffer);
 }
 
+
+void ftp_cwd(ftp_client_t *client, char *pathname)
+{
+    char cmd_cwd[256];
+    char buffer[BUFFER_SIZE];
+
+    strcpy(cmd_cwd, "CWD ");
+    strcat(cmd_cwd, pathname);
+    strcat(cmd_cwd, "\r\n");
+
+    send(client->fd, cmd_cwd, strlen(cmd_cwd), 0);
+    recv(client->fd, cmd_cwd, BUFFER_SIZE, 0);
+    printf("%s\n", buffer);
+}
