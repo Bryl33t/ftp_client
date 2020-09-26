@@ -17,6 +17,6 @@ ftp_client_t *ftp_client_connect(char *host, int port, char *username, char *pas
 void ftp_mkdir(ftp_client_t *fd, char *folders);
 void socket_connect(ftp_client_t *client);
 void ftp_login(ftp_client_t *client);
-
+void ftp_pwd(ftp_client_t *client, char *buffer, int buffer_size);
 
 
