@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <winsock2.h>
+#include <string.h>
 #include "../include/ftp_client.h"
-
+#define BUFFER_SIZE 1024
 void socket_init(ftp_client_t *init)
 {
     WSADATA wsa;
@@ -39,12 +40,36 @@ void socket_connect(ftp_client_t *client)
 
 }
 
+void ftp_login(ftp_client_t *client)
+{
+    char username[256];
+    char password[256];
 
-ftp_client_t *ftp_client_connect(char *host, int port, char *password, char *username)
+    char buffer[BUFFER_SIZE];
+
+    strcpy(username, "USER ");
+    strcat(username, client->user);
+    strcat(username, "\r\n");
+
+    strcpy(password, "PASS ");
+    strcat(password, client->password);
+    strcat(password, "\r\n");
+    
+    send(client->fd, username, strlen(username), 0);
+    recv(client->fd, buffer, BUFFER_SIZE, 0);
+    printf("%s\n", buffer);
+    
+    send(client->fd, password, strlen(password), 0);
+    recv(client->fd, buffer, BUFFER_SIZE, 0);
+    printf("%s\n", buffer);
+}
+
+
+ftp_client_t *ftp_client_connect(char *host, int port, char *username, char *password)
 {
     ftp_client_t *client = malloc(sizeof(ftp_client_t));
     int res;
-    char buffer[4096];
+    char buffer[BUFFER_SIZE];
 
     // initialise structure ftp
     client->host = host;
@@ -54,15 +79,33 @@ ftp_client_t *ftp_client_connect(char *host, int port, char *password, char *use
 
     socket_init(client);
     socket_connect(client);
-    send(client->fd, "HELP", 5, 0);
-    recv(client->fd, buffer, 4096, 0);
+    recv(client->fd, buffer, BUFFER_SIZE, 0);
     printf("%s\n", buffer);
+
+    ftp_login(client);
+
     return (client);    
 
 }
 
+
+
 void ftp_mkdir(ftp_client_t *fd, char *folders)
 {
+
+    char folders_crlf[256];
+    char buffer[BUFFER_SIZE];
     
+    strcpy(folders_crlf, "MKD ");
+
+    strcat(folders_crlf, folders);
+
+    strcat(folders_crlf, "\r\n");
+
+    send(fd->fd, folders_crlf, strlen(folders_crlf), 0);
+
+    recv(fd->fd, buffer, BUFFER_SIZE, 0);
+
+    printf("%s\n", buffer);
 }
 
