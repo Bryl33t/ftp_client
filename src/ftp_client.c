@@ -14,19 +14,27 @@ void socket_init(ftp_client_t *init)
 
     s = socket(AF_INET, SOCK_STREAM, 0);
     init->fd = s;
+    if(init->fd < 0) {
+        printf("Error socket !!!\n");
+        exit(EXIT_FAILURE);
+    }
     
 }
 
-int socket_connect(ftp_client_t *client)
+void socket_connect(ftp_client_t *client)
 {
     struct sockaddr_in sin;
     
     sin.sin_family = AF_INET;
-    sin.sin_port = htons(1337);
-    sin.sin_addr.s_addr = inet_addr("localhost");
-    printf("%d\n", client->fd);
+    sin.sin_port = htons(client->port);
+    sin.sin_addr.s_addr = inet_addr(client->host);
 
-    return (connect(client->fd, (struct sockaddr *)&sin, sizeof(sin)));
+    int conn = connect(client->fd, (struct sockaddr *)&sin, sizeof(sin));
+    if(conn < 0) {
+        printf("Error connection !!!\n");
+        exit(EXIT_FAILURE);
+    }
+
 
 
 }
@@ -36,6 +44,7 @@ ftp_client_t *ftp_client_connect(char *host, int port, char *password, char *use
 {
     ftp_client_t *client = malloc(sizeof(ftp_client_t));
     int res;
+    char buffer[4096];
 
     // initialise structure ftp
     client->host = host;
@@ -44,11 +53,16 @@ ftp_client_t *ftp_client_connect(char *host, int port, char *password, char *use
     client->user = username;
 
     socket_init(client);
-    res = socket_connect(client);
-    printf("%d\n", res);
+    socket_connect(client);
+    send(client->fd, "HELP", 5, 0);
+    recv(client->fd, buffer, 4096, 0);
+    printf("%s\n", buffer);
     return (client);    
 
 }
 
-
+void ftp_mkdir(ftp_client_t *fd, char *folders)
+{
+    
+}
 
