@@ -11,5 +11,6 @@ int main(int argc, char **argv)
 
     printf("%s\n", buffer);
 
-    ftp_mkdir(ftp, "lol");
+    ftp_cwd(ftp, "lol");
+
 }
