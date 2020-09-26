@@ -3,7 +3,7 @@
 #include <winsock2.h>
 #include <string.h>
 #include "../include/ftp_client.h"
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 1000
 void socket_init(ftp_client_t *init)
 {
     WSADATA wsa;
@@ -86,6 +86,12 @@ ftp_client_t *ftp_client_connect(char *host, int port, char *username, char *pas
 
     return (client);    
 
+}
+
+void ftp_pwd(ftp_client_t *client, char *buffer, int buffer_size)
+{
+    send(client->fd, "PWD\r\n", strlen("PWD\r\n"), 0);
+    recv(client->fd, buffer, buffer_size, 0);
 }
 
 
