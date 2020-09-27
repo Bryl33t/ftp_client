@@ -1,13 +1,209 @@
-                                                                        [Docs] [txt|pdf] [Tracker] [Errata]                                     
-                                                                        
-Updated by: 2228, 2640, 2773, 3659, 5797, 7151         INTERNET STANDARD
-                                                            Errata Exist
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://dublincore.org/documents/2008/08/04/dc-html/">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index,follow" />
+    <meta name="creator" content="rfcmarkup version 1.129d on tools.ietf.org" />
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+<meta name="DC.Relation.Replaces" content="rfc765" />
+<meta name="DC.Identifier" content="urn:ietf:rfc:959" />
+<meta name="DC.Date.Issued" content="October, 1985" />
+<meta name="DC.Creator" content="Postel, J." />
+<meta name="DC.Creator" content="Reynolds, J." />
+<meta name="DC.Description.Abstract" content="This memo is the official specification of the File Transfer Protocol
+(FTP) for the DARPA Internet community. The primary intent is to
+clarify and correct the documentation of the FTP specification, not to
+change the protocol. The following new optional commands are included
+in this edition of the specification: Change to Parent Directory
+(CDUP), Structure Mount (SMNT), Store Unique (STOU), Remove Directory
+(RMD), Make Directory (MKD), Print Directory (PWD), and System (SYST).
+Note that this specification is compatible with the previous edition." />
+<meta name="DC.Title" content="File Transfer Protocol" />
+
+    <link rel="icon" href="/images/rfc.png" type="image/png" />
+    <link rel="shortcut icon" href="/images/rfc.png" type="image/png" />
+    <title>RFC 959 - File Transfer Protocol</title>
+    
+    
+    <style type="text/css">
+	@media only screen 
+	  and (min-width: 992px)
+	  and (max-width: 1199px) {
+	    body { font-size: 14pt; }
+            div.content { width: 96ex; margin: 0 auto; }
+        }
+	@media only screen 
+	  and (min-width: 768px)
+	  and (max-width: 991px) {
+            body { font-size: 14pt; }
+            div.content { width: 96ex; margin: 0 auto; }
+        }
+	@media only screen 
+	  and (min-width: 480px)
+	  and (max-width: 767px) {
+            body { font-size: 11pt; }
+            div.content { width: 96ex; margin: 0 auto; }
+        }
+	@media only screen 
+	  and (max-width: 479px) {
+            body { font-size: 8pt; }
+            div.content { width: 96ex; margin: 0 auto; }
+        }
+	@media only screen 
+	  and (min-device-width : 375px) 
+	  and (max-device-width : 667px) {
+            body { font-size: 9.5pt; }
+            div.content { width: 96ex; margin: 0; }
+        }
+	@media only screen 
+	  and (min-device-width: 1200px) {
+            body { font-size: 10pt; margin: 0 4em; }
+            div.content { width: 96ex; margin: 0; }
+        }
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	    font-weight: bold;
+            /* line-height: 0pt; */
+            display: inline;
+            white-space: pre;
+            font-family: monospace;
+            font-size: 1em;
+	    font-weight: bold;
+        }
+        pre {
+            font-size: 1em;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+	.pre {
+	    white-space: pre;
+	    font-family: monospace;
+	}
+	.header{
+	    font-weight: bold;
+	}
+        .newpage {
+            page-break-before: always;
+        }
+        .invisible {
+            text-decoration: none;
+            color: white;
+        }
+        a.selflink {
+          color: black;
+          text-decoration: none;
+        }
+        @media print {
+            body {
+                font-family: monospace;
+                font-size: 10.5pt;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 1em;
+            }
+        
+            a:link, a:visited {
+                color: inherit;
+                text-decoration: none;
+            }
+            .noprint {
+                display: none;
+            }
+        }
+	@media screen {
+	    .grey, .grey a:link, .grey a:visited {
+		color: #777;
+	    }
+            .docinfo {
+                background-color: #EEE;
+            }
+            .top {
+                border-top: 7px solid #EEE;
+            }
+            .pad {
+                padding-top: 7px;
+                line-height: 24px;
+                padding-bottom: 4px;
+            }
+            .bgwhite  { background-color: white; }
+            .bgred    { background-color: #F44; }
+            .bggrey   { background-color: #666; }
+            .bgbrown  { background-color: #840; }            
+            .bgorange { background-color: #FA0; }
+            .bgyellow { background-color: #EE0; }
+            .bgmagenta{ background-color: #F4F; }
+            .bgblue   { background-color: #66F; }
+            .bgcyan   { background-color: #4DD; }
+            .bggreen  { background-color: #4F4; }
+
+            .legend   { font-size: 90%; }
+            .cplate   { font-size: 70%; border: solid grey 1px; }
+	}
+    </style>
+    <!--[if IE]>
+    <style>
+    body {
+       font-size: 13px;
+       margin: 10px 10px;
+    }
+    </style>
+    <![endif]-->
+
+    <script type="text/javascript"><!--
+    function addHeaderTags() {
+	var spans = document.getElementsByTagName("span");
+	for (var i=0; i < spans.length; i++) {
+	    var elem = spans[i];
+	    if (elem) {
+		var level = elem.getAttribute("class");
+                if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
+                    elem.innerHTML = "<"+level+">"+elem.innerHTML+"</"+level+">";		
+                }
+	    }
+	}
+    }
+    var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>                   <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>                     <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>             <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>              <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td>      <td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td>         <td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard (old designation):</td> <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Internet Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>                  <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>                  <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
+    function showElem(id) {
+        var elem = document.getElementById(id);
+        elem.innerHTML = eval(id+"_html");
+        elem.style.visibility='visible';
+    }
+    function hideElem(id) {
+        var elem = document.getElementById(id);
+        elem.style.visibility='hidden';        
+        elem.innerHTML = "";
+    }
+    // -->
+    </script>
+</head>
+<body onload="addHeaderTags()">
+  <div class="content">
+   <div style="height: 13px;">
+      <div onmouseover="this.style.cursor='pointer';"
+         onclick="showElem('legend');"
+         onmouseout="hideElem('legend')"
+	 style="height: 6px; position: absolute;"
+         class="pre noprint docinfo bggreen"
+         title="Click for colour legend." >                                                                        </div>
+      <div id="legend"
+           class="docinfo noprint pre legend"
+           style="position:absolute; top: 4px; left: 4ex; visibility:hidden; background-color: white; padding: 4px 9px 5px 7px; border: solid #345 1px; "
+           onmouseover="showElem('legend');"
+           onmouseout="hideElem('legend');">
+      </div>
+   </div>
+<span class="pre noprint docinfo top">[<a href="../html/" title="Document search and retrieval page">Docs</a>] [<a href="/rfc/rfc959.txt" title="Plaintext version of this document">txt</a>|<a href="/pdf/rfc959" title="PDF version of this document">pdf</a>] [<a href='https://datatracker.ietf.org/doc/rfc959' title='IESG Datatracker information for this document'>Tracker</a>] [<a href="https://www.rfc-editor.org/errata_search.php?rfc=959">Errata</a>]                                     </span><br />
+<span class="pre noprint docinfo">                                                                        </span><br />
+<span class="pre noprint docinfo">Updated by: <a href="./rfc2228">2228</a>, <a href="./rfc2640">2640</a>, <a href="./rfc2773">2773</a>, <a href="./rfc3659">3659</a>, <a href="./rfc5797">5797</a>, <a href="./rfc7151">7151</a>         INTERNET STANDARD</span><br />
+<span class="pre noprint docinfo">                                                            <span style='color: #C00;'>Errata Exist</span></span><br />
+<pre>
 Network Working Group                                          J. Postel
 Request for Comments: 959                                    J. Reynolds
                                                                      ISI
-Obsoletes RFC: 765 (IEN 149)                                October 1985
+Obsoletes RFC: <a href="./rfc765">765</a> (IEN 149)                                October 1985
 
-                      FILE TRANSFER PROTOCOL (FTP)
+                      <span class="h1">FILE TRANSFER PROTOCOL (FTP)</span>
 
 
 Status of this Memo
@@ -24,7 +220,7 @@ Status of this Memo
 
    Note that this specification is compatible with the previous edition.
 
-1.  INTRODUCTION
+<span class="h2"><a class="selflink" name="section-1" href="#section-1">1</a>.  INTRODUCTION</span>
 
    The objectives of FTP are 1) to promote sharing of files (computer
    programs and/or data), 2) to encourage indirect or implicit (via
@@ -38,10 +234,10 @@ Status of this Memo
    with a simple, and easily implemented protocol design.
 
    This paper assumes knowledge of the Transmission Control Protocol
-   (TCP) [2] and the Telnet Protocol [3].  These documents are contained
-   in the ARPA-Internet protocol handbook [1].
+   (TCP) [<a href="#ref-2" title="&quot;Transmission Control Protocol - DARPA Internet Program Protocol Specification&quot;">2</a>] and the Telnet Protocol [<a href="#ref-3" title="&quot;Telnet Protocol Specification&quot;">3</a>].  These documents are contained
+   in the ARPA-Internet protocol handbook [<a href="#ref-1" title="&quot;Internet Protocol Transition Workbook&quot;">1</a>].
 
-2.  OVERVIEW
+<span class="h2"><a class="selflink" name="section-2" href="#section-2">2</a>.  OVERVIEW</span>
 
    In this section, the history, the terminology, and the FTP model are
    discussed.  The terms defined in this section are only those that
@@ -55,54 +251,54 @@ Status of this Memo
 
 
 
-Postel & Reynolds                                               [Page 1]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                               [Page 1]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-2" id="page-2" href="#page-2" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
    2.1.  HISTORY
 
-      FTP has had a long evolution over the years.  Appendix III is a
+      FTP has had a long evolution over the years.  <a href="#appendix-I">Appendix I</a>II is a
       chronological compilation of Request for Comments documents
       relating to FTP.  These include the first proposed file transfer
       mechanisms in 1971 that were developed for implementation on hosts
-      at M.I.T. (RFC 114), plus comments and discussion in RFC 141.
+      at M.I.T. (<a href="./rfc114">RFC 114</a>), plus comments and discussion in <a href="./rfc141">RFC 141</a>.
 
-      RFC 172 provided a user-level oriented protocol for file transfer
+      <a href="./rfc172">RFC 172</a> provided a user-level oriented protocol for file transfer
       between host computers (including terminal IMPs).  A revision of
-      this as RFC 265, restated FTP for additional review, while RFC 281
+      this as <a href="./rfc265">RFC 265</a>, restated FTP for additional review, while <a href="./rfc281">RFC 281</a>
       suggested further changes.  The use of a "Set Data Type"
-      transaction was proposed in RFC 294 in January 1982.
+      transaction was proposed in <a href="./rfc294">RFC 294</a> in January 1982.
 
-      RFC 354 obsoleted RFCs 264 and 265.  The File Transfer Protocol
+      <a href="./rfc354">RFC 354</a> obsoleted RFCs 264 and 265.  The File Transfer Protocol
       was now defined as a protocol for file transfer between HOSTs on
       the ARPANET, with the primary function of FTP defined as
       transfering files efficiently and reliably among hosts and
       allowing the convenient use of remote file storage capabilities.
-      RFC 385 further commented on errors, emphasis points, and
-      additions to the protocol, while RFC 414 provided a status report
-      on the working server and user FTPs.  RFC 430, issued in 1973,
+      <a href="./rfc385">RFC 385</a> further commented on errors, emphasis points, and
+      additions to the protocol, while <a href="./rfc414">RFC 414</a> provided a status report
+      on the working server and user FTPs.  <a href="./rfc430">RFC 430</a>, issued in 1973,
       (among other RFCs too numerous to mention) presented further
       comments on FTP.  Finally, an "official" FTP document was
-      published as RFC 454.
+      published as <a href="./rfc454">RFC 454</a>.
 
       By July 1973, considerable changes from the last versions of FTP
-      were made, but the general structure remained the same.  RFC 542
+      were made, but the general structure remained the same.  <a href="./rfc542">RFC 542</a>
       was published as a new "official" specification to reflect these
       changes.  However, many implementations based on the older
       specification were not updated.
 
-      In 1974, RFCs 607 and 614 continued comments on FTP.  RFC 624
+      In 1974, RFCs 607 and 614 continued comments on FTP.  <a href="./rfc624">RFC 624</a>
       proposed further design changes and minor modifications.  In 1975,
-      RFC 686 entitled, "Leaving Well Enough Alone", discussed the
+      <a href="./rfc686">RFC 686</a> entitled, "Leaving Well Enough Alone", discussed the
       differences between all of the early and later versions of FTP.
-      RFC 691 presented a minor revision of RFC 686, regarding the
+      <a href="./rfc691">RFC 691</a> presented a minor revision of <a href="./rfc686">RFC 686</a>, regarding the
       subject of print files.
 
       Motivated by the transition from the NCP to the TCP as the
       underlying protocol, a phoenix was born out of all of the above
-      efforts in RFC 765 as the specification of FTP for use on TCP.
+      efforts in <a href="./rfc765">RFC 765</a> as the specification of FTP for use on TCP.
 
       This current edition of the FTP specification is intended to
       correct some minor documentation errors, to improve the
@@ -110,9 +306,9 @@ File Transfer Protocol
       optional commands.
 
 
-Postel & Reynolds                                               [Page 2]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                               [Page 2]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-3" id="page-3" href="#page-3" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -165,9 +361,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                               [Page 3]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                               [Page 3]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-4" id="page-4" href="#page-4" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -220,9 +416,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                               [Page 4]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                               [Page 4]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-5" id="page-5" href="#page-5" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -275,9 +471,9 @@ File Transfer Protocol
          server-PI.
 
 
-Postel & Reynolds                                               [Page 5]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                               [Page 5]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-6" id="page-6" href="#page-6" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -330,9 +526,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                               [Page 6]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                               [Page 6]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-7" id="page-7" href="#page-7" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -385,9 +581,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                               [Page 7]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                               [Page 7]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-8" id="page-8" href="#page-8" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -399,16 +595,16 @@ File Transfer Protocol
                                             -------------
                                             |/---------\|
                                             ||   User  ||    --------
-                                            ||Interface|<--->| User |
+                                            ||Interface|&lt;---&gt;| User |
                                             |\----^----/|    --------
                   ----------                |     |     |
                   |/------\|  FTP Commands  |/----V----\|
-                  ||Server|<---------------->|   User  ||
+                  ||Server|&lt;----------------&gt;|   User  ||
                   ||  PI  ||   FTP Replies  ||    PI   ||
                   |\--^---/|                |\----^----/|
                   |   |    |                |     |     |
       --------    |/--V---\|      Data      |/----V----\|    --------
-      | File |<--->|Server|<---------------->|  User   |<--->| File |
+      | File |&lt;---&gt;|Server|&lt;----------------&gt;|  User   |&lt;---&gt;| File |
       |System|    || DTP  ||   Connection   ||   DTP   ||    |System|
       --------    |\------/|                |\---------/|    --------
                   ----------                -------------
@@ -440,9 +636,9 @@ File Transfer Protocol
       parameters.  It should be noted that the data port need not be in
 
 
-Postel & Reynolds                                               [Page 8]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                               [Page 8]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-9" id="page-9" href="#page-9" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -462,13 +658,13 @@ File Transfer Protocol
 
 
                     Control     ------------   Control
-                    ---------->| User-FTP |<-----------
+                    ----------&gt;| User-FTP |&lt;-----------
                     |          | User-PI  |           |
                     |          |   "C"    |           |
                     V          ------------           V
             --------------                        --------------
             | Server-FTP |   Data Connection      | Server-FTP |
-            |    "A"     |<---------------------->|    "B"     |
+            |    "A"     |&lt;----------------------&gt;|    "B"     |
             -------------- Port (A)      Port (B) --------------
 
 
@@ -495,9 +691,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                               [Page 9]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                               [Page 9]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-10" id="page-10" href="#page-10" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -505,7 +701,7 @@ File Transfer Protocol
          little of the Telnet Protocol, so the first approach does not
          necessarily involve a large amount of code.
 
-3.  DATA TRANSFER FUNCTIONS
+<span class="h2"><a class="selflink" name="section-3" href="#section-3">3</a>.  DATA TRANSFER FUNCTIONS</span>
 
    Files are transferred only via the data connection.  The control
    connection is used for the transfer of commands, which describe the
@@ -550,9 +746,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 10]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 10]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-11" id="page-11" href="#page-11" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -587,7 +783,7 @@ File Transfer Protocol
             will convert the data from the standard form to his own
             internal form.
 
-            In accordance with the NVT standard, the <CRLF> sequence
+            In accordance with the NVT standard, the &lt;CRLF&gt; sequence
             should be used where necessary to denote the end of a line
             of text.  (See the discussion of file structure at the end
             of the Section on Data Representation and Storage.)
@@ -605,9 +801,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 11]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 11]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-12" id="page-12" href="#page-12" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -625,7 +821,7 @@ File Transfer Protocol
             End-of-line (as opposed to end-of-record--see the discussion
             of structure) will probably be rarely used with EBCDIC type
             for purposes of denoting structure, but where it is
-            necessary the <NL> character should be used.
+            necessary the &lt;NL&gt; character should be used.
 
          3.1.1.3.  IMAGE TYPE
 
@@ -660,9 +856,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 12]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 12]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-13" id="page-13" href="#page-13" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -715,9 +911,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 13]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 13]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-14" id="page-14" href="#page-14" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -731,14 +927,14 @@ File Transfer Protocol
             3.1.1.5.2.  TELNET FORMAT CONTROLS
 
                The file contains ASCII/EBCDIC vertical format controls
-               (i.e., <CR>, <LF>, <NL>, <VT>, <FF>) which the printer
-               process will interpret appropriately.  <CRLF>, in exactly
+               (i.e., &lt;CR&gt;, &lt;LF&gt;, &lt;NL&gt;, &lt;VT&gt;, &lt;FF&gt;) which the printer
+               process will interpret appropriately.  &lt;CRLF&gt;, in exactly
                this sequence, also denotes end-of-line.
 
             3.1.1.5.2.  CARRIAGE CONTROL (ASA)
 
                The file contains ASA (FORTRAN) vertical format control
-               characters.  (See RFC 740 Appendix C; and Communications
+               characters.  (See <a href="./rfc740#appendix-C">RFC 740 Appendix&nbsp;C</a>; and Communications
                of the ACM, Vol. 7, No. 10, p. 606, October 1964.)  In a
                line or a record formatted according to the ASA Standard,
                the first character is not to be printed.  Instead, it
@@ -760,7 +956,7 @@ File Transfer Protocol
                distinguish the end of the structural entity.  If a file
                has record structure (see below) this is no problem;
                records will be explicitly marked during transfer and
-               storage.  If the file has no record structure, the <CRLF>
+               storage.  If the file has no record structure, the &lt;CRLF&gt;
                end-of-line sequence is used to separate printing lines,
                but these format effectors are overridden by the ASA
                controls.
@@ -770,9 +966,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 14]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 14]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-15" id="page-15" href="#page-15" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -804,7 +1000,7 @@ File Transfer Protocol
          stores the file.  A source-code file will usually be stored on
          an IBM Mainframe in fixed length records but on a DEC TOPS-20
          as a stream of characters partitioned into lines, for example
-         by <CRLF>.  If the transfer of files between such disparate
+         by &lt;CRLF&gt;.  If the transfer of files between such disparate
          sites is to be useful, there must be some way for one site to
          recognize the other's assumptions about the file.
 
@@ -825,13 +1021,13 @@ File Transfer Protocol
          the FTP implementation should use the end-of-line sequence,
 
 
-Postel & Reynolds                                              [Page 15]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 15]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-16" id="page-16" href="#page-16" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
-         <CRLF> for ASCII, or <NL> for EBCDIC text files, as the
+         &lt;CRLF&gt; for ASCII, or &lt;NL&gt; for EBCDIC text files, as the
          delimiter.  If an FTP implementation adopts this technique, it
          must be prepared to reverse the transformation if the file is
          retrieved with file-structure.
@@ -880,9 +1076,9 @@ File Transfer Protocol
                   file.
 
 
-Postel & Reynolds                                              [Page 16]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 16]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-17" id="page-17" href="#page-17" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -926,7 +1122,7 @@ File Transfer Protocol
                   control.
 
             All fields are one logical byte in length.  The logical byte
-            size is specified by the TYPE command.  See Appendix I for
+            size is specified by the TYPE command.  See <a href="#appendix-I">Appendix I</a> for
             further details and a specific case at the page structure.
 
       A note of caution about parameters:  a file must be stored and
@@ -935,9 +1131,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 17]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 17]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-18" id="page-18" href="#page-18" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -990,9 +1186,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 18]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 18]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-19" id="page-19" href="#page-19" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1045,9 +1241,9 @@ File Transfer Protocol
          A comment on transfer modes.  The stream transfer mode is
 
 
-Postel & Reynolds                                              [Page 19]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 19]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-20" id="page-20" href="#page-20" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1089,7 +1285,7 @@ File Transfer Protocol
       end-of-record information may be transferred as a two byte control
       code in Stream mode or as a flagged bit in a Block or Compressed
       mode descriptor.  End-of-line in an ASCII or EBCDIC file with no
-      record structure should be indicated by <CRLF> or <NL>,
+      record structure should be indicated by &lt;CRLF&gt; or &lt;NL&gt;,
       respectively.  Since these transformations imply extra work for
       some systems, identical systems transferring non-record structured
       text files might wish to use a binary representation and stream
@@ -1100,9 +1296,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 20]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 20]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-21" id="page-21" href="#page-21" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1155,9 +1351,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 21]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 21]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-22" id="page-22" href="#page-22" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1188,7 +1384,7 @@ File Transfer Protocol
          The restart marker is embedded in the data stream as an
          integral number of 8-bit bytes representing printable
          characters in the language being used over the control
-         connection (e.g., default--NVT-ASCII).  <SP> (Space, in the
+         connection (e.g., default--NVT-ASCII).  &lt;SP&gt; (Space, in the
          appropriate language) must not be used WITHIN a restart marker.
 
          For example, to transmit a six-character marker, the following
@@ -1210,9 +1406,9 @@ File Transfer Protocol
             +--------+--------+--------+
 
 
-Postel & Reynolds                                              [Page 22]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 22]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-23" id="page-23" href="#page-23" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1221,7 +1417,7 @@ File Transfer Protocol
          There are three kinds of information to be sent:  regular data,
          sent in a byte string; compressed data, consisting of
          replications or filler; and control information, sent in a
-         two-byte escape sequence.  If n>0 bytes (up to 127) of regular
+         two-byte escape sequence.  If n&gt;0 bytes (up to 127) of regular
          data are sent, these n bytes are preceded by a byte with the
          left-most bit set to 0 and the right-most 7 bits containing the
          number n.
@@ -1251,7 +1447,7 @@ File Transfer Protocol
 
          A string of n filler bytes can be compressed into a single
          byte, where the filler byte varies with the representation
-         type.  If the type is ASCII or EBCDIC the filler byte is <SP>
+         type.  If the type is ASCII or EBCDIC the filler byte is &lt;SP&gt;
          (Space, ASCII code 32, EBCDIC code 64).  If the type is Image
          or Local byte the filler is a zero byte.
 
@@ -1265,9 +1461,9 @@ File Transfer Protocol
          The escape sequence is a double byte, the first of which is the
 
 
-Postel & Reynolds                                              [Page 23]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 23]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-24" id="page-24" href="#page-24" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1320,9 +1516,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 24]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 24]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-25" id="page-25" href="#page-25" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1330,7 +1526,7 @@ File Transfer Protocol
       RETR, STOR or LIST) which was being executed when the system
       failure occurred.
 
-4.  FILE TRANSFER FUNCTIONS
+<span class="h2"><a class="selflink" name="section-4" href="#section-4">4</a>.  FILE TRANSFER FUNCTIONS</span>
 
    The communication channel from the user-PI to the server-PI is
    established as a TCP connection from the user to the standard server
@@ -1375,9 +1571,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 25]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 25]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-26" id="page-26" href="#page-26" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1430,15 +1626,15 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 26]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 26]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-27" id="page-27" href="#page-27" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
             syntaxes for naming the parent directory.  The reply codes
             shall be identical to the reply codes of CWD.  See
-            Appendix II for further details.
+            <a href="#appendix-I">Appendix I</a>I for further details.
 
          STRUCTURE MOUNT (SMNT)
 
@@ -1485,9 +1681,9 @@ File Transfer Protocol
          specify data transfer parameters:
 
 
-Postel & Reynolds                                              [Page 27]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 27]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-28" id="page-28" href="#page-28" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1525,24 +1721,24 @@ File Transfer Protocol
             denoted by a single Telnet character, as is the second
             Format parameter for ASCII and EBCDIC; the second parameter
             for local byte is a decimal integer to indicate Bytesize.
-            The parameters are separated by a <SP> (Space, ASCII code
+            The parameters are separated by a &lt;SP&gt; (Space, ASCII code
             32).
 
             The following codes are assigned for type:
 
                          \    /
                A - ASCII |    | N - Non-print
-                         |-><-| T - Telnet format effectors
+                         |-&gt;&lt;-| T - Telnet format effectors
                E - EBCDIC|    | C - Carriage Control (ASA)
                          /    \
                I - Image
 
-               L <byte size> - Local byte Byte size
+               L &lt;byte size&gt; - Local byte Byte size
 
 
-Postel & Reynolds                                              [Page 28]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 28]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-29" id="page-29" href="#page-29" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1595,9 +1791,9 @@ File Transfer Protocol
          RETR).  The data, when transferred in response to FTP service
 
 
-Postel & Reynolds                                              [Page 29]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 29]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-30" id="page-30" href="#page-30" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1650,15 +1846,15 @@ File Transfer Protocol
             indicated by a decimal integer in a second argument field of
 
 
-Postel & Reynolds                                              [Page 30]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 30]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-31" id="page-31" href="#page-31" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
             the command.  This second argument is optional, but when
             present should be separated from the first by the three
-            Telnet characters <SP> R <SP>.  This command shall be
+            Telnet characters &lt;SP&gt; R &lt;SP&gt;.  This command shall be
             followed by a STORe or APPEnd command.  The ALLO command
             should be treated as a NOOP (no operation) by those servers
             which do not require that the maximum size of the file be
@@ -1705,9 +1901,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 31]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 31]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-32" id="page-32" href="#page-32" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1734,19 +1930,19 @@ File Transfer Protocol
             This command causes the directory specified in the pathname
             to be removed as a directory (if the pathname is absolute)
             or as a subdirectory of the current working directory (if
-            the pathname is relative).  See Appendix II.
+            the pathname is relative).  See <a href="#appendix-I">Appendix I</a>I.
 
          MAKE DIRECTORY (MKD)
 
             This command causes the directory specified in the pathname
             to be created as a directory (if the pathname is absolute)
             or as a subdirectory of the current working directory (if
-            the pathname is relative).  See Appendix II.
+            the pathname is relative).  See <a href="#appendix-I">Appendix I</a>I.
 
          PRINT WORKING DIRECTORY (PWD)
 
             This command causes the name of the current working
-            directory to be returned in the reply.  See Appendix II.
+            directory to be returned in the reply.  See <a href="#appendix-I">Appendix I</a>I.
 
          LIST (LIST)
 
@@ -1760,9 +1956,9 @@ File Transfer Protocol
             connection in type ASCII or type EBCDIC.  (The user must
 
 
-Postel & Reynolds                                              [Page 32]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 32]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-33" id="page-33" href="#page-33" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1780,7 +1976,7 @@ File Transfer Protocol
             will return a stream of names of files and no other
             information.  The data will be transferred in ASCII or
             EBCDIC type over the data connection as valid pathname
-            strings separated by <CRLF> or <NL>.  (Again the user must
+            strings separated by &lt;CRLF&gt; or &lt;NL&gt;.  (Again the user must
             ensure that the TYPE is correct.)  This command is intended
             to return information that can be used by a program to
             further process the files automatically.  For example, in
@@ -1800,7 +1996,7 @@ File Transfer Protocol
             This command is used to find out the type of operating
             system at the server.  The reply shall have as its first
             word one of the system names listed in the current version
-            of the Assigned Numbers document [4].
+            of the Assigned Numbers document [<a href="#ref-4" title="&quot;Assigned Numbers&quot;">4</a>].
 
          STATUS (STAT)
 
@@ -1815,9 +2011,9 @@ File Transfer Protocol
             is analogous to the "list" command except that data shall be
 
 
-Postel & Reynolds                                              [Page 33]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 33]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-34" id="page-34" href="#page-34" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1851,12 +2047,12 @@ File Transfer Protocol
    the language used for Telnet communication may be a negotiated
    option, all references in the next two sections will be to the
    "Telnet language" and the corresponding "Telnet end-of-line code".
-   Currently, one may take these to mean NVT-ASCII and <CRLF>.  No other
+   Currently, one may take these to mean NVT-ASCII and &lt;CRLF&gt;.  No other
    specifications of the Telnet protocol will be cited.
 
    FTP commands are "Telnet strings" terminated by the "Telnet end of
    line code".  The command codes themselves are alphabetic characters
-   terminated by the character <SP> (Space) if parameters follow and
+   terminated by the character &lt;SP&gt; (Space) if parameters follow and
    Telnet-EOL otherwise.  The command codes and the semantics of
    commands are described in this section; the detailed syntax of
    commands is specified in the Section on Commands, the reply sequences
@@ -1870,9 +2066,9 @@ File Transfer Protocol
    control connection while a data transfer is in progress.  Some
 
 
-Postel & Reynolds                                              [Page 34]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 34]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-35" id="page-35" href="#page-35" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -1925,13 +2121,13 @@ File Transfer Protocol
       A reply is defined to contain the 3-digit code, followed by Space
 
 
-Postel & Reynolds                                              [Page 35]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 35]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-36" id="page-36" href="#page-36" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
-      <SP>, followed by one line of text (where some maximum line length
+      &lt;SP&gt;, followed by one line of text (where some maximum line length
       has been specified), and terminated by the Telnet end-of-line
       code.  There will be cases however, where the text is longer than
       a single line.  In these cases the complete text must be bracketed
@@ -1948,7 +2144,7 @@ File Transfer Protocol
          will begin with the exact required reply code, followed
          immediately by a Hyphen, "-" (also known as Minus), followed by
          text.  The last line will begin with the same code, followed
-         immediately by Space <SP>, optionally some text, and the Telnet
+         immediately by Space &lt;SP&gt;, optionally some text, and the Telnet
          end-of-line code.
 
             For example:
@@ -1958,7 +2154,7 @@ File Transfer Protocol
                                 123 The last line
 
          The user-process then simply needs to search for the second
-         occurrence of the same reply code, followed by <SP> (Space), at
+         occurrence of the same reply code, followed by &lt;SP&gt; (Space), at
          the beginning of a line, and ignore all intermediary lines.  If
          an intermediary line begins with a 3-digit number, the Server
          must pad the front  to avoid confusion.
@@ -1980,9 +2176,9 @@ File Transfer Protocol
       will be able to determine its next action (proceed as planned,
 
 
-Postel & Reynolds                                              [Page 36]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 36]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-37" id="page-37" href="#page-37" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2035,9 +2231,9 @@ File Transfer Protocol
                different time value, but the intent is that the
 
 
-Postel & Reynolds                                              [Page 37]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 37]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-38" id="page-38" href="#page-38" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2090,9 +2286,9 @@ File Transfer Protocol
          list of replies below will illustrate this.  Note that the text
 
 
-Postel & Reynolds                                              [Page 38]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 38]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-39" id="page-39" href="#page-39" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2145,9 +2341,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 39]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 39]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-40" id="page-40" href="#page-40" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2200,9 +2396,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 40]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 40]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-41" id="page-41" href="#page-41" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2255,9 +2451,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 41]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 41]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-42" id="page-42" href="#page-42" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2310,9 +2506,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 42]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 42]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-43" id="page-43" href="#page-43" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2334,7 +2530,7 @@ File Transfer Protocol
              File name not allowed.
 
 
-5.  DECLARATIVE SPECIFICATIONS
+<span class="h2"><a class="selflink" name="section-5" href="#section-5">5</a>.  DECLARATIVE SPECIFICATIONS</span>
 
    5.1.  MINIMUM IMPLEMENTATION
 
@@ -2365,9 +2561,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 43]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 43]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-44" id="page-44" href="#page-44" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2377,7 +2573,7 @@ File Transfer Protocol
       user or user protocol interpreter shall initiate the full-duplex
       control connection.  Server- and user- processes should follow the
       conventions of the Telnet protocol as specified in the
-      ARPA-Internet Protocol Handbook [1].  Servers are under no
+      ARPA-Internet Protocol Handbook [<a href="#ref-1" title="&quot;Internet Protocol Transition Workbook&quot;">1</a>].  Servers are under no
       obligation to provide for editing of command lines and may require
       that it be done in the user host.  The control connection shall be
       closed by the server at the user's request after all transfers and
@@ -2420,22 +2616,22 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 44]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 44]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-45" id="page-45" href="#page-45" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
          User-PI - Server A                User-PI - Server B
          ------------------                ------------------
 
-         C->A : Connect                    C->B : Connect
-         C->A : PASV
-         A->C : 227 Entering Passive Mode. A1,A2,A3,A4,a1,a2
-                                           C->B : PORT A1,A2,A3,A4,a1,a2
-                                           B->C : 200 Okay
-         C->A : STOR                       C->B : RETR
-                    B->A : Connect to HOST-A, PORT-a
+         C-&gt;A : Connect                    C-&gt;B : Connect
+         C-&gt;A : PASV
+         A-&gt;C : 227 Entering Passive Mode. A1,A2,A3,A4,a1,a2
+                                           C-&gt;B : PORT A1,A2,A3,A4,a1,a2
+                                           B-&gt;C : 200 Okay
+         C-&gt;A : STOR                       C-&gt;B : RETR
+                    B-&gt;A : Connect to HOST-A, PORT-a
 
                                 Figure 3
 
@@ -2475,9 +2671,9 @@ File Transfer Protocol
       retrieve command:
 
 
-Postel & Reynolds                                              [Page 45]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 45]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-46" id="page-46" href="#page-46" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2488,7 +2684,7 @@ File Transfer Protocol
       fields are separated by one or more spaces.
 
       The argument field consists of a variable length character string
-      ending with the character sequence <CRLF> (Carriage Return, Line
+      ending with the character sequence &lt;CRLF&gt; (Carriage Return, Line
       Feed) for NVT-ASCII representation; for other negotiated languages
       a different end of line character might be used.  It should be
       noted that the server is to take no action until the end of line
@@ -2530,9 +2726,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 46]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 46]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-47" id="page-47" href="#page-47" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2540,40 +2736,40 @@ File Transfer Protocol
 
          The following are the FTP commands:
 
-            USER <SP> <username> <CRLF>
-            PASS <SP> <password> <CRLF>
-            ACCT <SP> <account-information> <CRLF>
-            CWD  <SP> <pathname> <CRLF>
-            CDUP <CRLF>
-            SMNT <SP> <pathname> <CRLF>
-            QUIT <CRLF>
-            REIN <CRLF>
-            PORT <SP> <host-port> <CRLF>
-            PASV <CRLF>
-            TYPE <SP> <type-code> <CRLF>
-            STRU <SP> <structure-code> <CRLF>
-            MODE <SP> <mode-code> <CRLF>
-            RETR <SP> <pathname> <CRLF>
-            STOR <SP> <pathname> <CRLF>
-            STOU <CRLF>
-            APPE <SP> <pathname> <CRLF>
-            ALLO <SP> <decimal-integer>
-                [<SP> R <SP> <decimal-integer>] <CRLF>
-            REST <SP> <marker> <CRLF>
-            RNFR <SP> <pathname> <CRLF>
-            RNTO <SP> <pathname> <CRLF>
-            ABOR <CRLF>
-            DELE <SP> <pathname> <CRLF>
-            RMD  <SP> <pathname> <CRLF>
-            MKD  <SP> <pathname> <CRLF>
-            PWD  <CRLF>
-            LIST [<SP> <pathname>] <CRLF>
-            NLST [<SP> <pathname>] <CRLF>
-            SITE <SP> <string> <CRLF>
-            SYST <CRLF>
-            STAT [<SP> <pathname>] <CRLF>
-            HELP [<SP> <string>] <CRLF>
-            NOOP <CRLF>
+            USER &lt;SP&gt; &lt;username&gt; &lt;CRLF&gt;
+            PASS &lt;SP&gt; &lt;password&gt; &lt;CRLF&gt;
+            ACCT &lt;SP&gt; &lt;account-information&gt; &lt;CRLF&gt;
+            CWD  &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            CDUP &lt;CRLF&gt;
+            SMNT &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            QUIT &lt;CRLF&gt;
+            REIN &lt;CRLF&gt;
+            PORT &lt;SP&gt; &lt;host-port&gt; &lt;CRLF&gt;
+            PASV &lt;CRLF&gt;
+            TYPE &lt;SP&gt; &lt;type-code&gt; &lt;CRLF&gt;
+            STRU &lt;SP&gt; &lt;structure-code&gt; &lt;CRLF&gt;
+            MODE &lt;SP&gt; &lt;mode-code&gt; &lt;CRLF&gt;
+            RETR &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            STOR &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            STOU &lt;CRLF&gt;
+            APPE &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            ALLO &lt;SP&gt; &lt;decimal-integer&gt;
+                [&lt;SP&gt; R &lt;SP&gt; &lt;decimal-integer&gt;] &lt;CRLF&gt;
+            REST &lt;SP&gt; &lt;marker&gt; &lt;CRLF&gt;
+            RNFR &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            RNTO &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            ABOR &lt;CRLF&gt;
+            DELE &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            RMD  &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            MKD  &lt;SP&gt; &lt;pathname&gt; &lt;CRLF&gt;
+            PWD  &lt;CRLF&gt;
+            LIST [&lt;SP&gt; &lt;pathname&gt;] &lt;CRLF&gt;
+            NLST [&lt;SP&gt; &lt;pathname&gt;] &lt;CRLF&gt;
+            SITE &lt;SP&gt; &lt;string&gt; &lt;CRLF&gt;
+            SYST &lt;CRLF&gt;
+            STAT [&lt;SP&gt; &lt;pathname&gt;] &lt;CRLF&gt;
+            HELP [&lt;SP&gt; &lt;string&gt;] &lt;CRLF&gt;
+            NOOP &lt;CRLF&gt;
 
 
 
@@ -2585,9 +2781,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 47]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 47]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-48" id="page-48" href="#page-48" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2596,30 +2792,30 @@ File Transfer Protocol
          The syntax of the above argument fields (using BNF notation
          where applicable) is:
 
-            <username> ::= <string>
-            <password> ::= <string>
-            <account-information> ::= <string>
-            <string> ::= <char> | <char><string>
-            <char> ::= any of the 128 ASCII characters except <CR> and
-            <LF>
-            <marker> ::= <pr-string>
-            <pr-string> ::= <pr-char> | <pr-char><pr-string>
-            <pr-char> ::= printable characters, any
+            &lt;username&gt; ::= &lt;string&gt;
+            &lt;password&gt; ::= &lt;string&gt;
+            &lt;account-information&gt; ::= &lt;string&gt;
+            &lt;string&gt; ::= &lt;char&gt; | &lt;char&gt;&lt;string&gt;
+            &lt;char&gt; ::= any of the 128 ASCII characters except &lt;CR&gt; and
+            &lt;LF&gt;
+            &lt;marker&gt; ::= &lt;pr-string&gt;
+            &lt;pr-string&gt; ::= &lt;pr-char&gt; | &lt;pr-char&gt;&lt;pr-string&gt;
+            &lt;pr-char&gt; ::= printable characters, any
                           ASCII code 33 through 126
-            <byte-size> ::= <number>
-            <host-port> ::= <host-number>,<port-number>
-            <host-number> ::= <number>,<number>,<number>,<number>
-            <port-number> ::= <number>,<number>
-            <number> ::= any decimal integer 1 through 255
-            <form-code> ::= N | T | C
-            <type-code> ::= A [<sp> <form-code>]
-                          | E [<sp> <form-code>]
+            &lt;byte-size&gt; ::= &lt;number&gt;
+            &lt;host-port&gt; ::= &lt;host-number&gt;,&lt;port-number&gt;
+            &lt;host-number&gt; ::= &lt;number&gt;,&lt;number&gt;,&lt;number&gt;,&lt;number&gt;
+            &lt;port-number&gt; ::= &lt;number&gt;,&lt;number&gt;
+            &lt;number&gt; ::= any decimal integer 1 through 255
+            &lt;form-code&gt; ::= N | T | C
+            &lt;type-code&gt; ::= A [&lt;sp&gt; &lt;form-code&gt;]
+                          | E [&lt;sp&gt; &lt;form-code&gt;]
                           | I
-                          | L <sp> <byte-size>
-            <structure-code> ::= F | R | P
-            <mode-code> ::= S | B | C
-            <pathname> ::= <string>
-            <decimal-integer> ::= any decimal integer
+                          | L &lt;sp&gt; &lt;byte-size&gt;
+            &lt;structure-code&gt; ::= F | R | P
+            &lt;mode-code&gt; ::= S | B | C
+            &lt;pathname&gt; ::= &lt;string&gt;
+            &lt;decimal-integer&gt; ::= any decimal integer
 
 
 
@@ -2640,9 +2836,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 48]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 48]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-49" id="page-49" href="#page-49" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2695,9 +2891,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 49]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 49]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-50" id="page-50" href="#page-50" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2750,9 +2946,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 50]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 50]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-51" id="page-51" href="#page-51" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2805,9 +3001,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 51]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 51]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-52" id="page-52" href="#page-52" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2860,9 +3056,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 52]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 52]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-53" id="page-53" href="#page-53" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2915,13 +3111,13 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 53]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 53]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-54" id="page-54" href="#page-54" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
-6.  STATE DIAGRAMS
+<span class="h2"><a class="selflink" name="section-6" href="#section-6">6</a>.  STATE DIAGRAMS</span>
 
    Here we present state diagrams for a very simple minded FTP
    implementation.  Only the first digit of the reply codes is used.
@@ -2942,15 +3138,15 @@ File Transfer Protocol
 
 
                                1,3    +---+
-                          ----------->| E |
+                          -----------&gt;| E |
                          |            +---+
                          |
       +---+    cmd    +---+    2      +---+
-      | B |---------->| W |---------->| S |
+      | B |----------&gt;| W |----------&gt;| S |
       +---+           +---+           +---+
                          |
                          |     4,5    +---+
-                          ----------->| F |
+                          -----------&gt;| F |
                                       +---+
 
 
@@ -2970,9 +3166,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 54]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 54]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-55" id="page-55" href="#page-55" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -2981,15 +3177,15 @@ File Transfer Protocol
 
 
                                3      +---+
-                          ----------->| E |
+                          -----------&gt;| E |
                          |            +---+
                          |
       +---+    cmd    +---+    2      +---+
-      | B |---------->| W |---------->| S |
-      +---+       --->+---+           +---+
+      | B |----------&gt;| W |----------&gt;| S |
+      +---+       ---&gt;+---+           +---+
                  |     | |
                  |     | |     4,5    +---+
-                 |  1  |  ----------->| F |
+                 |  1  |  -----------&gt;| F |
                   -----               +---+
 
 
@@ -3008,26 +3204,26 @@ File Transfer Protocol
 
 
       +---+   RNFR    +---+    1,2    +---+
-      | B |---------->| W |---------->| E |
-      +---+           +---+        -->+---+
+      | B |----------&gt;| W |----------&gt;| E |
+      +---+           +---+        --&gt;+---+
                        | |        |
                 3      | | 4,5    |
          --------------  ------   |
         |                      |  |   +---+
-        |               ------------->| S |
+        |               -------------&gt;| S |
         |              |   1,3 |  |   +---+
         |             2|  --------
         |              | |     |
         V              | |     |
-      +---+   RNTO    +---+ 4,5 ----->+---+
-      |   |---------->| W |---------->| F |
+      +---+   RNTO    +---+ 4,5 -----&gt;+---+
+      |   |----------&gt;| W |----------&gt;| F |
       +---+           +---+           +---+
 
 
 
-Postel & Reynolds                                              [Page 55]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 55]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-56" id="page-56" href="#page-56" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -3035,20 +3231,20 @@ File Transfer Protocol
 
 
       +---+   REST    +---+    1,2    +---+
-      | B |---------->| W |---------->| E |
-      +---+           +---+        -->+---+
+      | B |----------&gt;| W |----------&gt;| E |
+      +---+           +---+        --&gt;+---+
                        | |        |
                 3      | | 4,5    |
          --------------  ------   |
         |                      |  |   +---+
-        |               ------------->| S |
+        |               -------------&gt;| S |
         |              |   3   |  |   +---+
         |             2|  --------
         |              | |     |
         V              | |     |
-      +---+   cmd     +---+ 4,5 ----->+---+
-      |   |---------->| W |---------->| F |
-      +---+        -->+---+           +---+
+      +---+   cmd     +---+ 4,5 -----&gt;+---+
+      |   |----------&gt;| W |----------&gt;| F |
+      +---+        --&gt;+---+           +---+
                   |      |
                   |  1   |
                    ------
@@ -3080,9 +3276,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 56]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 56]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-57" id="page-57" href="#page-57" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -3090,9 +3286,9 @@ File Transfer Protocol
 
 
                             1
-      +---+   USER    +---+------------->+---+
-      | B |---------->| W | 2       ---->| E |
-      +---+           +---+------  |  -->+---+
+      +---+   USER    +---+-------------&gt;+---+
+      | B |----------&gt;| W | 2       ----&gt;| E |
+      +---+           +---+------  |  --&gt;+---+
                        | |       | | |
                      3 | | 4,5   | | |
          --------------   -----  | | |
@@ -3101,9 +3297,9 @@ File Transfer Protocol
         |                 ---------  |
         |               1|     | |   |
         V                |     | |   |
-      +---+   PASS    +---+ 2  |  ------>+---+
-      |   |---------->| W |------------->| S |
-      +---+           +---+   ---------->+---+
+      +---+   PASS    +---+ 2  |  ------&gt;+---+
+      |   |----------&gt;| W |-------------&gt;| S |
+      +---+           +---+   ----------&gt;+---+
                        | |   | |     |
                      3 | |4,5| |     |
          --------------   --------   |
@@ -3112,9 +3308,9 @@ File Transfer Protocol
         |                 -----------
         |             1,3|   | |  |
         V                |  2| |  |
-      +---+   ACCT    +---+--  |   ----->+---+
-      |   |---------->| W | 4,5 -------->| F |
-      +---+           +---+------------->+---+
+      +---+   ACCT    +---+--  |   -----&gt;+---+
+      |   |----------&gt;| W | 4,5 --------&gt;| F |
+      +---+           +---+-------------&gt;+---+
 
 
 
@@ -3135,9 +3331,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 57]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 57]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-58" id="page-58" href="#page-58" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -3150,14 +3346,14 @@ File Transfer Protocol
       Begin   |                                    |
         |     V                                    |
         |   +---+  cmd   +---+ 2         +---+     |
-         -->|   |------->|   |---------->|   |     |
+         --&gt;|   |-------&gt;|   |----------&gt;|   |     |
             |   |        | W |           | S |-----|
-         -->|   |     -->|   |-----      |   |     |
+         --&gt;|   |     --&gt;|   |-----      |   |     |
         |   +---+    |   +---+ 4,5 |     +---+     |
         |     |      |    | |      |               |
         |     |      |   1| |3     |     +---+     |
         |     |      |    | |      |     |   |     |
-        |     |       ----  |       ---->| F |-----
+        |     |       ----  |       ----&gt;| F |-----
         |     |             |            |   |
         |     |             |            +---+
          -------------------
@@ -3190,54 +3386,54 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 58]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 58]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-59" id="page-59" href="#page-59" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
-7.  TYPICAL FTP SCENARIO
+<span class="h2"><a class="selflink" name="section-7" href="#section-7">7</a>.  TYPICAL FTP SCENARIO</span>
 
    User at host U wanting to transfer files to/from host S:
 
    In general, the user will communicate to the server via a mediating
    user-FTP process.  The following may be a typical scenario.  The
-   user-FTP prompts are shown in parentheses, '---->' represents
-   commands from host U to host S, and '<----' represents replies from
+   user-FTP prompts are shown in parentheses, '----&gt;' represents
+   commands from host U to host S, and '&lt;----' represents replies from
    host S to host U.
 
       LOCAL COMMANDS BY USER              ACTION INVOLVED
 
-      ftp (host) multics<CR>         Connect to host S, port L,
+      ftp (host) multics&lt;CR&gt;         Connect to host S, port L,
                                      establishing control connections.
-                                     <---- 220 Service ready <CRLF>.
-      username Doe <CR>              USER Doe<CRLF>---->
-                                     <---- 331 User name ok,
-                                               need password<CRLF>.
-      password mumble <CR>           PASS mumble<CRLF>---->
-                                     <---- 230 User logged in<CRLF>.
-      retrieve (local type) ASCII<CR>
-      (local pathname) test 1 <CR>   User-FTP opens local file in ASCII.
-      (for. pathname) test.pl1<CR>   RETR test.pl1<CRLF> ---->
-                                     <---- 150 File status okay;
+                                     &lt;---- 220 Service ready &lt;CRLF&gt;.
+      username Doe &lt;CR&gt;              USER Doe&lt;CRLF&gt;----&gt;
+                                     &lt;---- 331 User name ok,
+                                               need password&lt;CRLF&gt;.
+      password mumble &lt;CR&gt;           PASS mumble&lt;CRLF&gt;----&gt;
+                                     &lt;---- 230 User logged in&lt;CRLF&gt;.
+      retrieve (local type) ASCII&lt;CR&gt;
+      (local pathname) test 1 &lt;CR&gt;   User-FTP opens local file in ASCII.
+      (for. pathname) test.pl1&lt;CR&gt;   RETR test.pl1&lt;CRLF&gt; ----&gt;
+                                     &lt;---- 150 File status okay;
                                            about to open data
-                                           connection<CRLF>.
+                                           connection&lt;CRLF&gt;.
                                      Server makes data connection
                                      to port U.
 
-                                     <---- 226 Closing data connection,
-                                         file transfer successful<CRLF>.
-      type Image<CR>                 TYPE I<CRLF> ---->
-                                     <---- 200 Command OK<CRLF>
-      store (local type) image<CR>
-      (local pathname) file dump<CR> User-FTP opens local file in Image.
-      (for.pathname) >udd>cn>fd<CR>  STOR >udd>cn>fd<CRLF> ---->
-                                     <---- 550 Access denied<CRLF>
-      terminate                      QUIT <CRLF> ---->
+                                     &lt;---- 226 Closing data connection,
+                                         file transfer successful&lt;CRLF&gt;.
+      type Image&lt;CR&gt;                 TYPE I&lt;CRLF&gt; ----&gt;
+                                     &lt;---- 200 Command OK&lt;CRLF&gt;
+      store (local type) image&lt;CR&gt;
+      (local pathname) file dump&lt;CR&gt; User-FTP opens local file in Image.
+      (for.pathname) &gt;udd&gt;cn&gt;fd&lt;CR&gt;  STOR &gt;udd&gt;cn&gt;fd&lt;CRLF&gt; ----&gt;
+                                     &lt;---- 550 Access denied&lt;CRLF&gt;
+      terminate                      QUIT &lt;CRLF&gt; ----&gt;
                                      Server closes all
                                      connections.
 
-8.  CONNECTION ESTABLISHMENT
+<span class="h2"><a class="selflink" name="section-8" href="#section-8">8</a>.  CONNECTION ESTABLISHMENT</span>
 
    The FTP control connection is established via TCP between the user
    process port U and the server process port L.  This protocol is
@@ -3245,9 +3441,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 59]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 59]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-60" id="page-60" href="#page-60" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -3300,9 +3496,9 @@ APPENDIX I -  PAGE STRUCTURE
 
 
 
-Postel & Reynolds                                              [Page 60]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 60]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-61" id="page-61" href="#page-61" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -3355,9 +3551,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 61]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 61]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-62" id="page-62" href="#page-62" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -3392,7 +3588,7 @@ APPENDIX II -  DIRECTORY COMMANDS
    subdirectory of the current working directory, unless the "pathname"
    string contains sufficient information to specify otherwise to the
    server, e.g., "pathname" is an absolute pathname (in UNIX and
-   Multics), or pathname is something like "<abso.lute.path>" to
+   Multics), or pathname is something like "&lt;abso.lute.path&gt;" to
    TOPS-20.
 
    REPLY CODES
@@ -3410,9 +3606,9 @@ APPENDIX II -  DIRECTORY COMMANDS
       freshly created directory will probably be the object of a future
 
 
-Postel & Reynolds                                              [Page 62]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 62]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-63" id="page-63" href="#page-63" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -3426,8 +3622,8 @@ File Transfer Protocol
 
       will fail.  The new directory may only be referred to by its
       "absolute" name; e.g., if the MKD command above were issued while
-      connected to the directory <DFRANKLIN>, the new subdirectory
-      could only be referred to by the name <DFRANKLIN.MYDIR>.
+      connected to the directory &lt;DFRANKLIN&gt;, the new subdirectory
+      could only be referred to by the name &lt;DFRANKLIN.MYDIR&gt;.
 
       Even on UNIX and Multics, however, the argument given to MKD may
       not be suitable.  If it is a "relative" pathname (i.e., a pathname
@@ -3439,7 +3635,7 @@ File Transfer Protocol
       To solve these problems, upon successful completion of an MKD
       command, the server should return a line of the form:
 
-         257<space>"<directory-name>"<space><commentary>
+         257&lt;space&gt;"&lt;directory-name&gt;"&lt;space&gt;&lt;commentary&gt;
 
       That is, the server will tell the user what string to use when
       referring to the created  directory.  The directory name can
@@ -3465,9 +3661,9 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 63]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 63]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-64" id="page-64" href="#page-64" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
@@ -3500,37 +3696,37 @@ File Transfer Protocol
       for the destination host to tell otherwise.  A hypothetical
       example of its use in the TOPS-20 world:
 
-         CWD <some.where>
+         CWD &lt;some.where&gt;
          200 Working directory changed
          MKD overrainbow
-         257 "<some.where.overrainbow>" directory created
+         257 "&lt;some.where.overrainbow&gt;" directory created
          CWD overrainbow
          431 No such directory
-         CWD <some.where.overrainbow>
+         CWD &lt;some.where.overrainbow&gt;
          200 Working directory changed
 
-         CWD <some.where>
-         200 Working directory changed to <some.where>
-         MKD <unambiguous>
-         257 "<unambiguous>" directory created
-         CWD <unambiguous>
+         CWD &lt;some.where&gt;
+         200 Working directory changed to &lt;some.where&gt;
+         MKD &lt;unambiguous&gt;
+         257 "&lt;unambiguous&gt;" directory created
+         CWD &lt;unambiguous&gt;
 
       Note that the first example results in a subdirectory of the
       connected directory.  In contrast, the argument in the second
       example contains enough information for TOPS-20 to tell that  the
 
 
-Postel & Reynolds                                              [Page 64]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 64]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-65" id="page-65" href="#page-65" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
-      <unambiguous> directory is a top-level directory.  Note also that
+      &lt;unambiguous&gt; directory is a top-level directory.  Note also that
       in the first example the user "violated" the protocol by
       attempting to access the freshly created directory with a name
       other than the one returned by TOPS-20.  Problems could have
-      resulted in this case had there been an <overrainbow> directory;
+      resulted in this case had there been an &lt;overrainbow&gt; directory;
       this is an ambiguity inherent in some TOPS-20 implementations.
       Similar considerations apply to the RMD command.  The point is
       this: except where to do so would violate a host's conventions for
@@ -3575,156 +3771,156 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 65]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 65]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-66" id="page-66" href="#page-66" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
 APPENDIX III - RFCs on FTP
 
-   Bhushan, Abhay, "A File Transfer Protocol", RFC 114 (NIC 5823),
+   Bhushan, Abhay, "A File Transfer Protocol", <a href="./rfc114">RFC 114</a> (NIC 5823),
    MIT-Project MAC, 16 April 1971.
 
-   Harslem, Eric, and John Heafner, "Comments on RFC 114 (A File
-   Transfer Protocol)", RFC 141 (NIC 6726), RAND, 29 April 1971.
+   Harslem, Eric, and John Heafner, "Comments on <a href="./rfc114">RFC 114</a> (A File
+   Transfer Protocol)", <a href="./rfc141">RFC 141</a> (NIC 6726), RAND, 29 April 1971.
 
-   Bhushan, Abhay, et al, "The File Transfer Protocol", RFC 172
+   Bhushan, Abhay, et al, "The File Transfer Protocol", <a href="./rfc172">RFC 172</a>
    (NIC 6794), MIT-Project MAC, 23 June 1971.
 
-   Braden, Bob, "Comments on DTP and FTP Proposals", RFC 238 (NIC 7663),
+   Braden, Bob, "Comments on DTP and FTP Proposals", <a href="./rfc238">RFC 238</a> (NIC 7663),
    UCLA/CCN, 29 September 1971.
 
-   Bhushan, Abhay, et al, "The File Transfer Protocol", RFC 265
+   Bhushan, Abhay, et al, "The File Transfer Protocol", <a href="./rfc265">RFC 265</a>
    (NIC 7813), MIT-Project MAC, 17 November 1971.
 
    McKenzie, Alex, "A Suggested Addition to File Transfer Protocol",
-   RFC 281 (NIC 8163), BBN, 8 December 1971.
+   <a href="./rfc281">RFC 281</a> (NIC 8163), BBN, 8 December 1971.
 
    Bhushan, Abhay, "The Use of "Set Data Type" Transaction in File
-   Transfer Protocol", RFC 294 (NIC 8304), MIT-Project MAC,
+   Transfer Protocol", <a href="./rfc294">RFC 294</a> (NIC 8304), MIT-Project MAC,
    25 January 1972.
 
-   Bhushan, Abhay, "The File Transfer Protocol", RFC 354 (NIC 10596),
+   Bhushan, Abhay, "The File Transfer Protocol", <a href="./rfc354">RFC 354</a> (NIC 10596),
    MIT-Project MAC, 8 July 1972.
 
-   Bhushan, Abhay, "Comments on the File Transfer Protocol (RFC 354)",
-   RFC 385 (NIC 11357), MIT-Project MAC, 18 August 1972.
+   Bhushan, Abhay, "Comments on the File Transfer Protocol (<a href="./rfc354">RFC 354</a>)",
+   <a href="./rfc385">RFC 385</a> (NIC 11357), MIT-Project MAC, 18 August 1972.
 
-   Hicks, Greg, "User FTP Documentation", RFC 412 (NIC 12404), Utah,
+   Hicks, Greg, "User FTP Documentation", <a href="./rfc412">RFC 412</a> (NIC 12404), Utah,
    27 November 1972.
 
    Bhushan, Abhay, "File Transfer Protocol (FTP) Status and Further
-   Comments", RFC 414 (NIC 12406), MIT-Project MAC, 20 November 1972.
+   Comments", <a href="./rfc414">RFC 414</a> (NIC 12406), MIT-Project MAC, 20 November 1972.
 
-   Braden, Bob, "Comments on File Transfer Protocol", RFC 430
+   Braden, Bob, "Comments on File Transfer Protocol", <a href="./rfc430">RFC 430</a>
    (NIC 13299), UCLA/CCN, 7 February 1973.
 
    Thomas, Bob, and Bob Clements, "FTP Server-Server Interaction",
-   RFC 438 (NIC 13770), BBN, 15 January 1973.
+   <a href="./rfc438">RFC 438</a> (NIC 13770), BBN, 15 January 1973.
 
-   Braden, Bob, "Print Files in FTP", RFC 448 (NIC 13299), UCLA/CCN,
+   Braden, Bob, "Print Files in FTP", <a href="./rfc448">RFC 448</a> (NIC 13299), UCLA/CCN,
    27 February 1973.
 
-   McKenzie, Alex, "File Transfer Protocol", RFC 454 (NIC 14333), BBN,
+   McKenzie, Alex, "File Transfer Protocol", <a href="./rfc454">RFC 454</a> (NIC 14333), BBN,
    16 February 1973.
 
 
-Postel & Reynolds                                              [Page 66]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 66]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-67" id="page-67" href="#page-67" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
-   Bressler, Bob, and Bob Thomas, "Mail Retrieval via FTP", RFC 458
+   Bressler, Bob, and Bob Thomas, "Mail Retrieval via FTP", <a href="./rfc458">RFC 458</a>
    (NIC 14378), BBN-NET and BBN-TENEX, 20 February 1973.
 
-   Neigus, Nancy, "File Transfer Protocol", RFC 542 (NIC 17759), BBN,
+   Neigus, Nancy, "File Transfer Protocol", <a href="./rfc542">RFC 542</a> (NIC 17759), BBN,
    12 July 1973.
 
    Krilanovich, Mark, and George Gregg, "Comments on the File Transfer
-   Protocol", RFC 607 (NIC 21255), UCSB, 7 January 1974.
+   Protocol", <a href="./rfc607">RFC 607</a> (NIC 21255), UCSB, 7 January 1974.
 
-   Pogran, Ken, and Nancy Neigus, "Response to RFC 607 - Comments on the
-   File Transfer Protocol", RFC 614 (NIC 21530), BBN, 28 January 1974.
+   Pogran, Ken, and Nancy Neigus, "Response to <a href="./rfc607">RFC 607</a> - Comments on the
+   File Transfer Protocol", <a href="./rfc614">RFC 614</a> (NIC 21530), BBN, 28 January 1974.
 
    Krilanovich, Mark, George Gregg, Wayne Hathaway, and Jim White,
-   "Comments on the File Transfer Protocol", RFC 624 (NIC 22054), UCSB,
+   "Comments on the File Transfer Protocol", <a href="./rfc624">RFC 624</a> (NIC 22054), UCSB,
    Ames Research Center, SRI-ARC, 28 February 1974.
 
-   Bhushan, Abhay, "FTP Comments and Response to RFC 430", RFC 463
+   Bhushan, Abhay, "FTP Comments and Response to <a href="./rfc430">RFC 430</a>", <a href="./rfc463">RFC 463</a>
    (NIC 14573), MIT-DMCG, 21 February 1973.
 
-   Braden, Bob, "FTP Data Compression", RFC 468 (NIC 14742), UCLA/CCN,
+   Braden, Bob, "FTP Data Compression", <a href="./rfc468">RFC 468</a> (NIC 14742), UCLA/CCN,
    8 March 1973.
 
-   Bhushan, Abhay, "FTP and Network Mail System", RFC 475 (NIC 14919),
+   Bhushan, Abhay, "FTP and Network Mail System", <a href="./rfc475">RFC 475</a> (NIC 14919),
    MIT-DMCG, 6 March 1973.
 
    Bressler, Bob, and Bob Thomas "FTP Server-Server Interaction - II",
-   RFC 478 (NIC 14947), BBN-NET and BBN-TENEX, 26 March 1973.
+   <a href="./rfc478">RFC 478</a> (NIC 14947), BBN-NET and BBN-TENEX, 26 March 1973.
 
-   White, Jim, "Use of FTP by the NIC Journal", RFC 479 (NIC 14948),
+   White, Jim, "Use of FTP by the NIC Journal", <a href="./rfc479">RFC 479</a> (NIC 14948),
    SRI-ARC, 8 March 1973.
 
-   White, Jim, "Host-Dependent FTP Parameters", RFC 480 (NIC 14949),
+   White, Jim, "Host-Dependent FTP Parameters", <a href="./rfc480">RFC 480</a> (NIC 14949),
    SRI-ARC, 8 March 1973.
 
-   Padlipsky, Mike, "An FTP Command-Naming Problem", RFC 506
+   Padlipsky, Mike, "An FTP Command-Naming Problem", <a href="./rfc506">RFC 506</a>
    (NIC 16157), MIT-Multics, 26 June 1973.
 
    Day, John, "Memo to FTP Group (Proposal for File Access Protocol)",
-   RFC 520 (NIC 16819), Illinois, 25 June 1973.
+   <a href="./rfc520">RFC 520</a> (NIC 16819), Illinois, 25 June 1973.
 
-   Merryman, Robert, "The UCSD-CC Server-FTP Facility", RFC 532
+   Merryman, Robert, "The UCSD-CC Server-FTP Facility", <a href="./rfc532">RFC 532</a>
    (NIC 17451), UCSD-CC, 22 June 1973.
 
-   Braden, Bob, "TENEX FTP Problem", RFC 571 (NIC 18974), UCLA/CCN,
+   Braden, Bob, "TENEX FTP Problem", <a href="./rfc571">RFC 571</a> (NIC 18974), UCLA/CCN,
    15 November 1973.
 
 
 
 
-Postel & Reynolds                                              [Page 67]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 67]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-68" id="page-68" href="#page-68" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
    McKenzie, Alex, and Jon Postel, "Telnet and FTP Implementation -
-   Schedule Change", RFC 593 (NIC 20615), BBN and MITRE,
+   Schedule Change", <a href="./rfc593">RFC 593</a> (NIC 20615), BBN and MITRE,
    29 November 1973.
 
    Sussman, Julie, "FTP Error Code Usage for More Reliable Mail
-   Service", RFC 630 (NIC 30237), BBN, 10 April 1974.
+   Service", <a href="./rfc630">RFC 630</a> (NIC 30237), BBN, 10 April 1974.
 
-   Postel, Jon, "Revised FTP Reply Codes", RFC 640 (NIC 30843),
+   Postel, Jon, "Revised FTP Reply Codes", <a href="./rfc640">RFC 640</a> (NIC 30843),
    UCLA/NMC, 5 June 1974.
 
-   Harvey, Brian, "Leaving Well Enough Alone", RFC 686 (NIC 32481),
+   Harvey, Brian, "Leaving Well Enough Alone", <a href="./rfc686">RFC 686</a> (NIC 32481),
    SU-AI, 10 May 1975.
 
-   Harvey, Brian, "One More Try on the FTP", RFC 691 (NIC 32700), SU-AI,
+   Harvey, Brian, "One More Try on the FTP", <a href="./rfc691">RFC 691</a> (NIC 32700), SU-AI,
    28 May 1975.
 
-   Lieb, J., "CWD Command of FTP", RFC 697 (NIC 32963), 14 July 1975.
+   Lieb, J., "CWD Command of FTP", <a href="./rfc697">RFC 697</a> (NIC 32963), 14 July 1975.
 
-   Harrenstien, Ken, "FTP Extension: XSEN", RFC 737 (NIC 42217), SRI-KL,
+   Harrenstien, Ken, "FTP Extension: XSEN", <a href="./rfc737">RFC 737</a> (NIC 42217), SRI-KL,
    31 October 1977.
 
-   Harrenstien, Ken, "FTP Extension: XRSQ/XRCP", RFC 743 (NIC 42758),
+   Harrenstien, Ken, "FTP Extension: XRSQ/XRCP", <a href="./rfc743">RFC 743</a> (NIC 42758),
    SRI-KL, 30 December 1977.
 
-   Lebling, P. David, "Survey of FTP Mail and MLFL", RFC 751, MIT,
+   Lebling, P. David, "Survey of FTP Mail and MLFL", <a href="./rfc751">RFC 751</a>, MIT,
    10 December 1978.
 
-   Postel, Jon, "File Transfer Protocol Specification", RFC 765, ISI,
+   Postel, Jon, "File Transfer Protocol Specification", <a href="./rfc765">RFC 765</a>, ISI,
    June 1980.
 
    Mankins, David, Dan Franklin, and Buzz Owen, "Directory Oriented FTP
-   Commands", RFC 776, BBN, December 1980.
+   Commands", <a href="./rfc776">RFC 776</a>, BBN, December 1980.
 
-   Padlipsky, Michael, "FTP Unique-Named Store Command", RFC 949, MITRE,
+   Padlipsky, Michael, "FTP Unique-Named Store Command", <a href="./rfc949">RFC 949</a>, MITRE,
    July 1985.
 
 
@@ -3740,24 +3936,24 @@ File Transfer Protocol
 
 
 
-Postel & Reynolds                                              [Page 68]
- 
-RFC 959                                                     October 1985
+<span class="grey">Postel &amp; Reynolds                                              [Page 68]</span></pre>
+<hr class='noprint' style='width: 96ex;' align='left'/><!--NewPage--><pre class='newpage'><a name="page-69" id="page-69" href="#page-69" class="invisible"> </a>
+<span class="grey"><a href="./rfc959">RFC 959</a>                                                     October 1985</span>
 File Transfer Protocol
 
 
 REFERENCES
 
-   [1]  Feinler, Elizabeth, "Internet Protocol Transition Workbook",
+   [<a name="ref-1" id="ref-1">1</a>]  Feinler, Elizabeth, "Internet Protocol Transition Workbook",
         Network Information Center, SRI International, March 1982.
 
-   [2]  Postel, Jon, "Transmission Control Protocol - DARPA Internet
-        Program Protocol Specification", RFC 793, DARPA, September 1981.
+   [<a name="ref-2" id="ref-2">2</a>]  Postel, Jon, "Transmission Control Protocol - DARPA Internet
+        Program Protocol Specification", <a href="./rfc793">RFC 793</a>, DARPA, September 1981.
 
-   [3]  Postel, Jon, and Joyce Reynolds, "Telnet Protocol
-        Specification", RFC 854, ISI, May 1983.
+   [<a name="ref-3" id="ref-3">3</a>]  Postel, Jon, and Joyce Reynolds, "Telnet Protocol
+        Specification", <a href="./rfc854">RFC 854</a>, ISI, May 1983.
 
-   [4]  Reynolds, Joyce, and Jon Postel, "Assigned Numbers", RFC 943,
+   [<a name="ref-4" id="ref-4">4</a>]  Reynolds, Joyce, and Jon Postel, "Assigned Numbers", <a href="./rfc943">RFC 943</a>,
         ISI, April 1985.
 
 
@@ -3795,7 +3991,12 @@ REFERENCES
 
 
 
-Postel & Reynolds                                              [Page 69]
+Postel &amp; Reynolds                                              [Page 69]
 
-
-Html markup produced by rfcmarkup 1.129d, available from https://tools.ietf.org/tools/rfcmarkup/
+</pre><br />
+    <span class="noprint"><small><small>Html markup produced by rfcmarkup 1.129d, available from
+      <a href="https://tools.ietf.org/tools/rfcmarkup/">https://tools.ietf.org/tools/rfcmarkup/</a>
+    </small></small></span>
+  </div>
+</body>
+</html>
